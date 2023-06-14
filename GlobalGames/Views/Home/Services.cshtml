@@ -1,0 +1,105 @@
+﻿@model GlobalGames.Data.Entities.Budget
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<partial name="_Header" />
+
+<body>
+    <header>
+        <div class="container">
+            <div id="logo">
+                <h1><span class="destaque">Global</span> Games Enterprise</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
+                    <li class="selecionado"><a asp-area="" asp-controller="Home" asp-action="Services">Serviços</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <partial name="_Newsletter" />
+
+    <section id="main">
+        <div class="container">
+            <article id="main-col">
+                <h1 class="titulo">Serviços</h1>
+
+                <ul id="servicos">
+                    <li>
+                        <h3>Jogos Unity</h3>
+                        <p>
+                            Os jogos Unity são jogos desenvolvidos utilizando a Unity, uma das engines mais populares na indústria de jogos. A Unity oferece uma ampla gama de recursos e ferramentas que permitem aos desenvolvedores criar jogos para várias plataformas, como PC, consoles, dispositivos móveis e realidade virtual.
+
+                            Com a Unity, os desenvolvedores podem criar jogos 2D e 3D de alta qualidade, com gráficos impressionantes, física realista, efeitos especiais, animações fluidas e uma jogabilidade envolvente. A engine também suporta a criação de ambientes interativos, inteligência artificial, áudio imersivo e multiplayer online.
+
+                            Além disso, a Unity possui uma grande comunidade de desenvolvedores e uma vasta quantidade de recursos, tutoriais e documentação disponíveis, o que facilita o aprendizado e a resolução de problemas durante o processo de desenvolvimento.
+
+                            Os jogos Unity oferecem uma ampla variedade de possibilidades criativas e são utilizados tanto por desenvolvedores independentes quanto por grandes estúdios de jogos para criar experiências de jogo incríveis e envolventes.
+                        </p>
+                        <p>Preços: 1.000&euro; - 3.000&euro;</p>
+                    </li>
+
+                    <li>
+                        <h3>Jogos Unreal</h3>
+                        <p>
+                            Os jogos Unreal são jogos desenvolvidos utilizando a Unreal Engine, uma poderosa engine de desenvolvimento de jogos. A Unreal Engine é conhecida por sua capacidade de criar jogos com gráficos de alta qualidade, ambientes imersivos e física realista.
+
+                            A Unreal Engine oferece uma ampla gama de recursos e ferramentas para os desenvolvedores, permitindo a criação de jogos 2D e 3D para várias plataformas, incluindo PC, consoles, dispositivos móveis e realidade virtual. Ela possui um sistema avançado de renderização, suporte a efeitos visuais impressionantes, ferramentas de animação robustas e um sistema de física poderoso.
+                        </p>
+                        <p>Preços: 2.500&euro; - 6.000&euro;</p>
+                    </li>
+
+                    <li>
+                        <h3>Desenvolvimento de personagens</h3>
+                        <p>
+                            Design de personagem: Isso envolve a concepção visual do personagem, incluindo sua aparência, trajes, acessórios e características físicas. O design de personagens pode ser influenciado pelo gênero do jogo, estilo artístico e público-alvo.
+
+                            Caracterização e história: Um personagem bem desenvolvido possui uma história de fundo, motivações claras e uma personalidade única. O desenvolvimento de personagens envolve criar histórias de origem, características de personalidade, objetivos e conflitos que tornam o personagem interessante e cativante para os jogadores.
+
+                            Habilidades e mecânicas de jogo: Os personagens de um jogo podem ter habilidades especiais, poderes ou mecânicas de jogo únicas que os distinguem uns dos outros. O desenvolvimento de personagens também envolve equilibrar essas habilidades para garantir uma jogabilidade justa e interessante.
+
+                            Animação e movimento: Uma parte importante do desenvolvimento de personagens é criar animações realistas e fluidas para os movimentos do personagem. Isso inclui animações de caminhada, corrida, ataques, interações e expressões faciais, entre outros.
+                           
+                        </p>
+                        <p>Preços: 3.000&euro; - 7.500&euro;</p>
+                    </li>
+                </ul>
+            </article>
+
+            <aside id="sidebar">
+                <div class="dark">
+                    <h3>Peça um orçamento</h3>
+                    <form class="orcamento" asp-action="Orcamento" enctype="multipart/form-data">
+
+                        <div>
+                            <label>Nome</label><br />
+                            <input type="text" placeholder="Nome" asp-for="Nome" />
+                        </div>
+
+                        <div>
+                            <label>Email</label><br />
+                            <input type="email" placeholder="Endereço de email" asp-for="Email" />
+                        </div>
+
+                        <div>
+                            <label>Mensagem</label><br />
+                            <textarea placeholder="Mensagem" asp-for="Mensagem"></textarea>
+                        </div>
+
+                        <button class="button_1" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </section>
+    <footer>
+        <p>Global Games, Todos os direitos reservados &copy; 2020</p>
+    </footer>
+</body>
+</html>

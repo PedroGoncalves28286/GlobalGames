@@ -1,0 +1,27 @@
+﻿@model GlobalGames.Data.Entities.Newsletter
+
+<section id="showcase">
+    <div class="container">
+        <h1>A melhor plataforma de realidade virtual</h1>
+        <p>
+            A Global Games Enterprise é pioneira no desenvolvimento de jogos de realidade virtual, 
+            oferecendo uma experiência imersiva e envolvente para os jogadores.
+            Nossos jogos para realidade virtual são projetados para aproveitar ao máximo a tecnologia avançada, 
+            proporcionando gráficos realistas, interação intuitiva e uma sensação de presença virtual sem precedentes.
+            Compatíveis com as principais plataformas de realidade virtual do mercado, como Oculus Rift, HTC Vive e PlayStation VR, 
+            nossos jogos elevam a experiência dos jogadores a um novo patamar. Descubra um mundo de possibilidades virtuais com a Global Games Enterprise.
+           
+        </p>
+    </div>
+</section>
+
+<section id="newsletter">
+    <div class="container">
+        <h1>Subscreve a nossa newsletter</h1>
+        <form asp-action="Subscrever" enctype="multipart/form-data">
+            <input type="email" placeholder="Coloque o email..." asp-for="Email" />
+            <button type="submit" action="Subscrever" class="button_1">Subscrever</button>
+
+        </form>
+    </div>
+</section>

@@ -1,5 +1,8 @@
-﻿using GlobalGames.Models;
+﻿using GlobalGames.Data;
+using GlobalGames.Data.Entities;
+using GlobalGames.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,17 +16,52 @@ namespace GlobalGames.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DataContext _dataContext;
+        public HomeController(ILogger<HomeController> logger,
+            DataContext dataContext)
         {
             _logger = logger;
+            _dataContext = dataContext;
         }
 
         public IActionResult Index()
         {
             return View();
+
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Subscrever(Newsletter newsletter)
+        {
+            if (ModelState.IsValid)
+            {
+                await _dataContext.Database.EnsureCreatedAsync();
+                _dataContext.Add(newsletter);
+                await _dataContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(newsletter);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Orcamento(Budget budget)
+        {
+            if (ModelState.IsValid)
+            {
+                await _dataContext.Database.EnsureCreatedAsync();
+                _dataContext.Add(budget);
+                await _dataContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(budget);
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Services()
         {
             return View();
         }
