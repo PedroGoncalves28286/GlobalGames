@@ -25,8 +25,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="wwwroot\images\logo_brush.png" />
+		<None Include="wwwroot\images\logo_css.png" />
+		<None Include="wwwroot\images\logo_html.png" />
+		<None Include="wwwroot\images\showcase.jpg" />
+	</ItemGroup>
 
 </Project>
