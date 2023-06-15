@@ -16,6 +16,22 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li class="selecionado"><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Services">Serviços</a></li>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+
+                    }
                 </ul>
             </nav>
         </div>
@@ -26,7 +42,7 @@
     <section id="main">
         <div class="container">
             <article id="main-col">
-                <h1 class="titulo">Sobre nós</h1>
+                <h1 class="titulo">About us</h1>
                 <p>
                     A Global Games Enterprise é uma renomada empresa de desenvolvimento de jogos,
                     com uma paixão por criar experiências incríveis para os jogadores em todo o mundo.
@@ -46,7 +62,7 @@
 
             <aside id="sidebar">
                 <div class="dark">
-                    <h3>O que fazemos</h3>
+                    <h3>What we do</h3>
                     <p>
                         Na Global Games Enterprise, desenvolvemos uma ampla variedade de jogos para diferentes plataformas,
                         incluindo consoles, PCs e dispositivos móveis. Nossa equipe de desenvolvedores, designers e artistas colabora

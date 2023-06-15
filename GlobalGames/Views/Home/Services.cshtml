@@ -17,6 +17,22 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
                     <li class="selecionado"><a asp-area="" asp-controller="Home" asp-action="Services">Serviços</a></li>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+
+                    }
                 </ul>
             </nav>
         </div>
