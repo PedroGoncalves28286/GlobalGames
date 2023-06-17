@@ -1,0 +1,69 @@
+﻿@model GlobalGames.Models.ChangeUserViewModel
+@{
+    ViewData["Title"] = "ChangeUser";
+}
+<header>
+    <div class="container">
+        <div id="logo">
+            <h1><span class="destaque">Global</span> Games Enterprise</h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="selecionado"><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Services">Serviços</a></li>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Account" asp-action="ChangeUser">@this.User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                    </li>
+
+                }
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h1>ChangeUser</h1>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-warning"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+                <a asp-action="ChangePassword" class="btn btn-success">Change Password</a>
+            </div>
+
+            <div class="text success">@ViewBag.UserMessage</div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    }
