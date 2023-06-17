@@ -1,57 +1,62 @@
 ﻿using GlobalGames.Data;
 using GlobalGames.Data.Entities;
 using GlobalGames.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GlobalGames.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly INewsletterRepository _newsletterRepository;
+        private readonly IBudgetRepository _budgetRepository;
+        private readonly IUserHelper _userHelper;
 
-        private readonly DataContext _dataContext;
         public HomeController(ILogger<HomeController> logger,
-            DataContext dataContext)
+            INewsletterRepository newsletterRepository,
+            IBudgetRepository budgetRepository,
+            IUserHelper userHelper)
         {
             _logger = logger;
-            _dataContext = dataContext;
+            _newsletterRepository = newsletterRepository;
+            _budgetRepository = budgetRepository;
+            _userHelper = userHelper;
         }
 
         public IActionResult Index()
         {
+
             return View();
 
 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Subscrever(Newsletter newsletter)
         {
             if (ModelState.IsValid)
             {
-                await _dataContext.Database.EnsureCreatedAsync();
-                _dataContext.Add(newsletter);
-                await _dataContext.SaveChangesAsync();
+                newsletter.user = await _userHelper.GetUserByEmailAsync(this.User.Identity.Name);
+                await _newsletterRepository.CreateAsync(newsletter);
                 return RedirectToAction(nameof(Index));
             }
             return View(newsletter);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Orcamento(Budget budget)
         {
             if (ModelState.IsValid)
             {
-                await _dataContext.Database.EnsureCreatedAsync();
-                _dataContext.Add(budget);
-                await _dataContext.SaveChangesAsync();
+                budget.user = await _userHelper.GetUserByEmailAsync(this.User.Identity.Name);
+                await _budgetRepository.CreateAsync(budget);
                 return RedirectToAction(nameof(Index));
             }
             return View(budget);
